@@ -1,0 +1,404 @@
+/* variables */
+
+:root {
+  --viewportHeight: 0;
+  --cameraZ: 0;
+  --rotateX: 0;
+  --sceneY: 0;
+  --randX: 0;
+  --randY: 0;
+}
+
+/* custom fonts */
+
+@font-face {
+  font-family: custom;
+  src: url(fonts/Glass_TTY_VT220.ttf);
+}
+
+@font-face {
+  font-family: custom2;
+  src: url(fonts/OstrichSans-Heavy.otf);
+}
+
+/* base */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: calc(var(--viewportHeight) * 1px);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overscroll-behavior: none;
+  font-family: serif;
+  color: #cfdbd5;
+  background-color: #000011;
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 720px;
+}
+
+/* star field */
+
+.threejs {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+}
+
+/* intro text */
+
+.dialogue {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 25px;
+  letter-spacing: 5px;
+  font-family: custom;
+  padding-bottom: 75px;
+  width: 100%;
+  height: 100%;
+}
+
+/* camera */
+
+.camera {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--cameraZ) * 1px));
+}
+
+/* date - time */
+
+.info {
+  width: 25%;
+  height: 25%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: custom2;
+  font-size: 25px;
+  letter-spacing: 20px;
+  text-align: center;
+  color: aquamarine;
+}
+
+.l-align {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.r-align {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#time {
+  transform: translateX(125%) translateY(50px);
+}
+
+#date {
+  transform: translateX(125%) translateY(-50px);
+}
+
+#day {
+  transform: translateX(-125%);
+}
+
+/* main */
+
+.scene {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transform: translateZ(-2480px) translateY(calc(var(--sceneY) * 1px)) rotateX(calc(var(--rotateX) * 1deg));
+}
+
+.panel {
+  position: fixed;
+  width: 1440px;
+  height: 720px;
+  background-color: rgba(0, 0, 17, 0.1);
+  z-index: -10;
+}
+
+.center-panel {}
+
+.back-panel {
+  transform: translateZ(720px);
+}
+
+.top-panel {
+  transform-origin: bottom center;
+  transform: translateY(-720px) rotateX(270deg);
+}
+
+.bottom-panel {
+  transform-origin: top center;
+  transform: translateY(720px) rotateX(90deg);
+}
+
+.side-panel {
+  width: 720px;
+  height: 720px;
+  position: fixed;
+  overflow: hidden;
+  background-color: rgba(0, 0, 17, 0.1);
+}
+
+.right-panel {
+  transform-origin: left center;
+  transform: translateX(1080px) rotateY(270deg);
+}
+
+.left-panel {
+  transform-origin: right center;
+  transform: translateX(-1080px) rotateY(90deg);
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-side {
+  width: 100%;
+  height: 100%;
+  transform: scaleY(2) scaleX(2);
+}
+
+.frame {
+  stroke-width: 10;
+  stroke: aquamarine;
+}
+
+/* greeting */
+
+.greeting-root {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: custom2;
+  color: aquamarine;
+}
+
+.greeting-title {
+  font-size: 2em;
+  margin: 1em 1em;
+  text-align: center;
+  background-color: #000011e0;
+}
+
+.greeting-text {
+  width: 80%;
+  font-size: 2em;
+  text-align: center;
+  background-color: #000011e0;
+}
+
+/* giphy api */
+
+#gif {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+/* quotes api */
+.quote-root {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: custom2;
+  color: aquamarine;
+}
+
+#quote {
+  width: 80%;
+  transform: scale(1, -1);
+  font-size: 2em;
+  margin: 1em 1em;
+  text-align: center;
+  background-color: #000011e0;
+}
+
+#quote-author {
+  transform: scale(1, -1);
+  font-size: 2em;
+  background-color: #000011e0;
+}
+
+/* facts api */
+
+.fact-root {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: custom2;
+  color: aquamarine;
+}
+
+#fact {
+  width: 80%;
+  font-size: 2em;
+  text-align: center;
+  background-color: #000011e0;
+}
+
+/* functions */
+
+.hide {
+  opacity: 0%;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* keyframed - functions */
+
+.show {
+  animation: show 3s ease;
+  animation-fill-mode: forwards;
+}
+
+.showTv {
+  animation: show 10s ease;
+  animation-fill-mode: forwards;
+}
+
+.rand {
+  animation: rand 0.25s linear;
+  animation-fill-mode: forwards;
+}
+
+.roto {
+  animation: roto 20s linear infinite;
+}
+
+.tv-off {
+  animation: tv-off 0.5s ease;
+  animation-fill-mode: forwards;
+}
+
+.tv-on {
+  animation: tv-on 1.5s ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes rand {
+  0% {
+    transform: translateZ(-2480px) rotateX(calc(var(--randX) * 1deg)) rotateY(calc(var(--randY) * 1deg));
+  }
+  100% {
+    transform: translateZ(-2480px) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes roto {
+  0% {
+    transform: translateZ(-2500px) rotateX(0deg) rotateY(0deg);
+  }
+  20% {
+    transform: translateZ(-2500px) rotateX(72deg) rotateY(72deg);
+  }
+  40% {
+    transform: translateZ(-2500px) rotateX(144deg) rotateY(144deg);
+  }
+  60% {
+    transform: translateZ(-2500px) rotateX(216deg) rotateY(216deg);
+  }
+  80% {
+    transform: translateZ(-2500px) rotateX(288deg) rotateY(288deg);
+  }
+  100% {
+    transform: translateZ(-2500px) rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes tv-off {
+  10% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1, 0.02);
+    opacity: 1
+  }
+  100% {
+    transform: scale(0.2, 0.02);
+    opacity: 0;
+  }
+}
+
+@keyframes tv-on {
+  0% {
+    transform: scale(0.2, 0.02);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1, 0.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
