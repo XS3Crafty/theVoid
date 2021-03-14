@@ -7,7 +7,9 @@ An experiment with 3d css transformations. The void is a small javascript web ap
 The box's transformations do not allow for responsivity across screens and as such only works on resolutions 720p and up. The box is comprised of 4 different sections where content can be displayed. Excluding the first, each section displays random information rendered through different api's. 
 
 Giphy (https://developers.giphy.com/docs/api/) - random motivational gifs
+
 GoQuotes (https://goquotes.docs.apiary.io/#) - random quotes...sometimes motivational
+
 UselessFacts (https://uselessfacts.jsph.pl/) - random facts...you're on your own
 
 The purpose of this? No reason, it was made out of boredom. Each subsequent section is meant to be less and less helpful to your average procrastinator. The data updates as you travese the sections allowing for endless hours of ... fun? Either way, check it out!
